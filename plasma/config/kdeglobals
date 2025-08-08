@@ -1,0 +1,204 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=56,56,56
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.65
+ContrastEffect=1
+Enable=
+IntensityAmount=0.1
+IntensityEffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=112,111,110
+ColorAmount=0.025
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=2
+Enable=true
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=112,86,169
+BackgroundNormal=34,31,44
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=209,199,242
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:Complementary]
+BackgroundAlternate=45,83,123
+BackgroundNormal=44,43,61
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=209,199,242
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:Header]
+BackgroundAlternate=30,27,40
+BackgroundNormal=0,0,0
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=146,110,228
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:Header][Inactive]
+BackgroundAlternate=51,51,70
+BackgroundNormal=44,43,61
+DecorationFocus=89,169,237
+DecorationHover=89,169,237
+ForegroundActive=89,169,237
+ForegroundInactive=163,166,191
+ForegroundLink=68,149,243
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:Selection]
+BackgroundAlternate=102,77,159
+BackgroundNormal=102,77,159
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=255,255,255
+ForegroundLink=118,54,221
+ForegroundNegative=167,63,90
+ForegroundNeutral=189,98,67
+ForegroundNormal=255,255,255
+ForegroundPositive=41,100,78
+ForegroundVisited=152,90,186
+
+[Colors:Tooltip]
+BackgroundAlternate=44,43,61
+BackgroundNormal=51,51,70
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=209,199,242
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:View]
+BackgroundAlternate=36,35,52
+BackgroundNormal=0,0,0
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=146,110,228
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[Colors:Window]
+BackgroundAlternate=51,51,70
+BackgroundNormal=34,31,44
+DecorationFocus=146,110,228
+DecorationHover=146,110,228
+ForegroundActive=146,110,228
+ForegroundInactive=163,166,191
+ForegroundLink=209,199,242
+ForegroundNegative=207,79,107
+ForegroundNeutral=234,123,81
+ForegroundNormal=253,249,255
+ForegroundPositive=70,169,122
+ForegroundVisited=152,90,186
+
+[DirSelect Dialog]
+DirSelectDialog Size=822,606
+History Items[$e]=file:$HOME/walls,file:///mnt/sakura/Games/Bottles/CosmicByte,file:///mnt/sakura/Archlinux,file:$HOME/walls/desktop,file:$HOME/walls/desktop,file:$HOME/walls,file:///mnt/tanya,file:///mnt/sakura,file:///mnt/sakura/aur/home/chroot/zen-browser,file:///mnt/suzume,file:$HOME/Downloads/Music,file:$HOME/Downloads/Pictures,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Documents,file:///mnt/sakura/Games,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/tomcat/apache-tomcat-9.0.89,file:$HOME/eclipse/tomcat,file:$HOME/eclipse/jdbc_mariadb,file:$HOME/Downloads/Music,file:$HOME/Downloads/Pictures,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Documents,file:$HOME/Downloads/Documents,file:$HOME/Downloads/Music,file:$HOME/Downloads/Pictures,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Music,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Documents,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Pictures,file:$HOME/Downloads/Music,file:///home/Tokito,file:$HOME/Downloads,file:$HOME/Downloads/Music,file:$HOME/Downloads/Pictures,file:$HOME/Downloads/Videos,file:$HOME/Downloads/Documents
+
+[General]
+AccentColor=146,110,228
+BrowserApplication=chromium.desktop
+ColorScheme=BreezeDarkCustom
+ColorSchemeHash=989449b36b38e97f46c0579e025ead98356fcb88
+LastUsedCustomAccentColor=146,110,228
+UseSystemBell=true
+XftAntialias=true
+XftHintStyle=hintslight
+XftSubPixel=rgb
+font=Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+menuFont=Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+smallestReadableFont=Inter,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+toolBarFont=Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[Icons]
+Theme=Papirus-Dark
+
+[KDE]
+LookAndFeelPackage=org.kde.breezedark.desktop
+ShowDeleteCommand=false
+SingleClick=true
+widgetStyle=qt6ct-style
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=Simple
+
+[KScreen]
+ScaleFactor=1.25
+ScreenScaleFactors=eDP-1=1.25;
+
+[KShortcutsDialog Settings]
+Dialog Size=600,480
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+
+[Sounds]
+Theme=freedesktop
+
+[WM]
+activeBackground=34,31,44
+activeBlend=252,252,252
+activeFont=Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+activeForeground=255,255,255
+inactiveBackground=34,31,44
+inactiveBlend=161,169,177
+inactiveForeground=166,165,170
