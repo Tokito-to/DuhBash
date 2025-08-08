@@ -1,0 +1,181 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "modules-left": [
+        "custom/wallchange",
+        "hyprland/workspaces",
+        "wlr/taskbar",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "idle_inhibitor",
+        "clock"
+        ],
+    "modules-right": [
+        "tray",
+        "network",
+        "cpu",
+        "memory",
+        "backlight",
+        "wireplumber",
+        "custom/cliphist",
+        "custom/notification",
+        "battery",
+        "custom/wlogout"
+    ],
+//left
+    "custom/wallchange": {
+        "format": "",
+        "rotate": 0,
+        "on-click": "hypaper --swap",
+        "on-click-right": "hypaper --swap ${HOME}/walls/Slayer.png",
+        "tooltip": true,
+        "tooltip-format": "<span>Change WallPaper\nRight click for Boobies</span>"
+    },
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+             "*": 4
+       }
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 24,
+        "tooltip-format": "{name}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        },
+       "rewrite": {
+            "Firefox Web Browser": "Firefox",
+            "Foot Server": "Terminal"
+        }
+    },
+    "hyprland/window": {
+        "format": "{initialTitle}",
+        "rewrite": {
+            "^$": " - Hyprland"
+        }
+    },
+//Center
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "icon-size": 24,
+        "tooltip-format-activated": "Caffeine {status}",
+        "tooltip-format-deactivated": "Caffeine {status}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "clock": {
+        "format": "{:%r}",
+        "format-alt": "{:%r 󰃭 %d/%m/%y}",
+        "rotate": 0,
+        "interval": 1,
+        "tooltip-format": "<span>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        }
+    },
+//Right
+    "tray": {
+        "icon-size": 18,
+        "rotate": 0,
+        "spacing": 5
+    },
+    "network": {
+        "tooltip": true,
+        "format-wifi": "{essid} {bandwidthTotalBytes}",
+        "format-linked": "{ifname} (No IP)",
+        "format-ethernet": "{bandwidthTotalBytes}",
+        "format-disconnected": "Offline",
+        "tooltip-format-wifi": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>",
+        "tooltip-format-ethernet":"Interface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>",
+        "tooltip-format-linked": "Interface: <b>{ifname}</b>\nIP Unavailable",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 1
+    },
+    "cpu": {
+       "tooltip": true,
+       "format": " {usage}%",
+       "format-tooltip": "CPU: {avg_frequency} GHz"
+   },
+   "memory": {
+       "format": " {used} GB",
+       "tooltip-format": "Memory Usage\nRAM: {used} GB\nSwap: {swapUsed} GB"
+   },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-click": "brightnessctl set 1%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip-format":"Brightness: {icon} {percent}%\nClick to Set Brightness to 1%"
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "rotate": 0,
+        "format-muted": "󰖁",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "format-icons": ["","", "", ""],
+        "tooltip-format": "Volume: {icon} {volume}%"
+    },
+    "custom/cliphist": {
+        "format": "{}",
+        "on-click": "pkill wofi || cliphist list | wofi -c .config/wofi/clipboard.conf | cliphist decode | wl-copy",
+        "on-click-right": "cliphist wipe",
+        "interval" : 86400, // once every day
+        "tooltip": true,
+        "tooltip-format": " 󰅇 Clipboard History\nLeft-Click for clipdoard\nRight-Click for clipboard wipe"
+    },
+    "custom/notification": {
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "escape": true,
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󱅫",
+            "dnd-none": "󰂚",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󱅫",
+            "dnd-inhibited-none": "󰂚"
+        }
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-icons": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states": {
+            "good": 80,
+            "warning": 35,
+            "critical": 20
+        },
+        "tooltip-format": "Capacity: {capacity}%\nPower: {power} Watts\n{timeTo}\nHealth: 󱈑 {health}%",
+        "tooltip-format-charging": "Capacity: {capacity}%\nPower: {power} Watts\nFull Charge In: {time}\nHealth: 󱈑 {health}%"
+    },
+    "custom/wlogout": {
+            "format": "⏻",
+            "tooltip": false,
+            "on-click": "wlogout -p layer-shell"
+    }
+}
