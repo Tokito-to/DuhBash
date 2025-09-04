@@ -1,0 +1,5 @@
+[nvim]
+packages = "'neovim' 'python-pynvim' 'tree-sitter-cli'"
+config = "'nvim'"
+local = "''"
+
