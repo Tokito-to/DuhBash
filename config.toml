@@ -1,3 +1,6 @@
+[hyprland]
+config = "'hypr' 'kitty' 'btop' 'fastfetch' 'swayimg' 'swaync' 'sys64' 'waybar' 'wlogout' 'wofi' 'xdg-desktop-portal'"
+
 [nvim]
 packages = "'neovim' 'python-pynvim' 'tree-sitter-cli'"
 config = "'nvim'"

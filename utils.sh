@@ -2,7 +2,7 @@
 
 prompt() { echo -ne " \e[92m*\e[39m $*"; }
 
-err() { echo -e " \e[91m*\e[39m $*" && exit 1; }
+abort() { echo -e " \e[91m*\e[39m $*" && exit 1; }
 
 pr () { echo -e "\e[92m$*\e[39m"; }
 
@@ -23,7 +23,8 @@ toml_get_table() { sed -n "/\[${1}]/,/^\[.*]$/p" <<<"$__TOML__" | sed '${/^\[/d;
 toml_get() {
     local table_name=$1 key=$2 val
     table="$(toml_get_table "${table_name}")"
-    val=$(grep -m 1 "^${key}=" <<<"$table") && sed -e "s/^\"//; s/\"$//" <<<"${val#*=}"
+    val=$(grep -m 1 "^${key}=" <<<"$table") && val=$(sed -e "s/^\"//; s/\"$//" <<<"${val#*=}")
+    tr -d '"' <<<"${val#*=}"
 }
 
 # kanged from: linutils
@@ -84,29 +85,46 @@ select_option() {
 }
 
 # Tool utils
-check-table_names() {
-    local -a TABLES="${!1}"
-    local -a DEFINED_TABLES="${!2}"
+check_toml_get() {
+    local -n TABLE_VAR=$1
 
-    for TABLE in "${TABLES[@]}"; do
-        if ! echo "${DEFINED_TABLES[*]}" | grep -Fxo -q "${TABLE}"; then
-            err "${TABLE} is not defined"
-        fi
-    done
+    if [[ -z "${TABLE_VAR}" || "${TABLE_VAR}" = '""' ]]; then
+        echo "false"
+    else
+        echo "true"
+    fi
 }
 
 copy() {
-    local SOURCE="$1"
+    local SOURCE="${1}"
     local DESTINATION="${2}"
+    local TABLE="${3}"
 
     SOURCE="${SOURCE//\"}"
     DESTINATION="${DESTINATION//\"}"
-
-    [[ "${ESCALATION_TOOL}" == "eval" ]] && err "Copying dots to root. Aborting!"
+    [[ "${ESCALATION_TOOL}" == "eval" ]] && abort "Copying dots to root. Aborting!"
 
     mkdir -p "${DESTINATION}"
     cp -f -rv "${SOURCE}" "${DESTINATION}"
 
-    echo "Sync complete!"
+    echo "${TABLE} Backup Complete!"
+}
+
+backup() {
+    local TABLE=$1
+    local -n TABLE_DIRS=$2
+    local TOML_CHECK
+    TOML_CHECK=$(check_toml_get "${!TABLE_DIRS}")
+
+    if [[ "${TOML_CHECK}" == "true" ]]; then
+        # shellcheck disable=2068
+        for TABLE_DIR in ${TABLE_DIRS[@]}; do
+            if [[ "${TABLE}" ==  "${TABLE_DIR}" ]]; then
+                copy "${CONFIG_DIR}/${TABLE_DIR}" "${STORE_DIR}" "${TABLE}"
+            else
+                copy "${CONFIG_DIR}/${TABLE_DIR}" "${STORE_DIR}/${TABLE}" "${TABLE}"
+            fi
+        done
+    fi
 }
 
