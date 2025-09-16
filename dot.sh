@@ -11,6 +11,11 @@ export STORE_DIR="${PWD}/dotfiles"
 
 command -v pacman >/dev/null 2>&1 || export DISABLE_PACKAGE="true"
 
+# Check CLI Arguments
+if [[ $# -eq 0 ]]; then
+    abort "No Table Specified"
+fi
+
 IFS=" " read -ra DEFINED_TABLES <<< "$(toml_get_table_names)"
 IFS=" " read -ra TABLES <<< "$*"
 
