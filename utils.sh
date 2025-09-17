@@ -128,3 +128,21 @@ backup() {
     fi
 }
 
+restore() {
+    local TABLE=$1
+    local -n TABLE_DIRS=$2
+    local TOML_CHECK
+    TOML_CHECK=$(check_toml_get "${!TABLE_DIRS}")
+
+    if [[ "${TOML_CHECK}" == "true" ]]; then
+        # shellcheck disable=2068
+        for TABLE_DIR in ${TABLE_DIRS[@]}; do
+            if [[ "${TABLE}" ==  "${TABLE_DIR}" ]]; then
+                copy "${STORE_DIR}/${TABLE}" "${CONFIG_DIR}" "${TABLE}"
+            else
+                copy "${STORE_DIR}/${TABLE}/${TABLE_DIR}" "${CONFIG_DIR}" "${TABLE}"
+            fi
+        done
+    fi
+}
+

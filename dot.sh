@@ -21,7 +21,7 @@ IFS=" " read -ra TABLES <<< "$*"
 
 # check-toml_table_names
 for TABLE in "${TABLES[@]}"; do
-    if ! echo "${DEFINED_TABLES[*]}" | grep -Fo -q "${TABLE}"; then
+    if ! echo "${DEFINED_TABLES[*]}" | grep -Fow -q "${TABLE}"; then
         abort "${TABLE} is not defined"
     fi
 done
@@ -42,9 +42,30 @@ case $EXIT_STATUS in
         done
         ;;
     1)
-        echo "restore"
+        options=("Restore (Dots)" "Restore (Packages)" "Exit")
+        select_option "${options[@]}"
+        EXIT_STATUS="$?"
+
+        case $EXIT_STATUS in
+            0)
+                # shellcheck disable=2034
+                for TABLE in "${TABLES[@]}"; do
+                    IFS=" " read -r TABLE_CONFIG_DIRS <<< "$(toml_get "${TABLE}" config)"
+                    IFS=" " read -r TABLE_LOCAL_DIRS <<< "$(toml_get "${TABLE}" local)"
+
+                    restore "${TABLE}" "TABLE_CONFIG_DIRS"
+                    restore "${TABLE}" "TABLE_LOCAL_DIRS"
+                done
+                ;;
+            1)
+                echo "Package Install..."
+                ;;
+            2)
+                abort "User Choose To Exit"
+                ;;
+        esac
         ;;
-    2)
+        2)
         abort "User choose to exit"
         ;;
 esac
