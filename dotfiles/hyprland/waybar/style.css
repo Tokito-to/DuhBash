@@ -1,0 +1,166 @@
+* {
+    font-family: Cartograph CF Nerd Font, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+    border: none;
+}
+tooltip {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    border: 2px solid #11111b;
+}
+window#waybar {
+    background: rgba(0, 0, 0, 0);
+    color: #cdd6f4;
+}
+#custom-restart-waybar {
+    color: #ff6d6a;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 5px 0 5px
+}
+#custom-wallchange {
+    color: #a6e3a1;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#workspaces button {
+    padding: 5px;
+    color: #bfc1c2;
+    margin-right: 5px;
+}
+#workspaces button.active {
+    color: #7dc8f7;
+}
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 10px;
+}
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 10px;
+}
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+#workspaces {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+}
+#taskbar button {
+    border-radius: 10px;
+}
+#taskbar button:hover {
+    background: #11111b;
+}
+#taskbar.empty {
+    background: rgba(0, 0, 0, 0);
+    margin: -10px;
+}
+#taskbar {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    margin-left: 5px;
+    padding: 0 10px;
+}
+#window {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    margin-left: 5px;
+    padding: 0 10px;
+}
+#idle_inhibitor {
+    color: #fab387;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px 0 0 10px;
+    padding: 0 5px 0 10px;
+}
+#clock {
+    color: #fab387;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 0 10px 10px 0;
+    padding: 0 10px 0 5px;
+}
+#tray {
+    color: #f9e2af;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    margin-right: 5px;
+}
+#network {
+    color: #f9e2af;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    margin-right: 5px;
+}
+#cpu {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius:10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#memory {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#backlight {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px 0 0 10px;
+    padding: 0 10px;
+    margin-left: 5px;
+}
+#wireplumber {
+    color: #89b4fa;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 0 10px 10px 0;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#custom-cliphist {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#custom-notification {
+    color: #f9e2af;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#battery {
+    color: #a6e3a1;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#power-profiles-daemon {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+#power-profiles-daemon.performance { color: #f38ba8; }
+#power-profiles-daemon.balanced { color: #89dceb; }
+#power-profiles-daemon.power-saver { color: #a6e3a1; }
+#custom-wlogout {
+    color: #ff6d6a;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 10px;
+    margin-right: 5px;
+    padding: 0 10px;
+}
