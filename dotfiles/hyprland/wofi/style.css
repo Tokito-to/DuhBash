@@ -1,0 +1,47 @@
+@define-color  lavender #b4befe;
+@define-color  lavender-bg rgba(180, 190, 254, 0.8);
+@define-color dark-bg rgba(30, 30, 46, 0.8);
+
+* {
+    font-family: 'SpaceMono Nerd Font', monospace;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#input {
+    margin: 10px;
+    border-radius: 10px;
+    background: @dark-bg;
+    animation: fadeIn 0.3s ease-in-out both;
+}
+
+#window {
+    border: 0.16em solid @lavender;
+    border-radius: 10px;
+    background: @dark-bg;
+    animation: slideIn 0.3s ease-in-out both;
+}
+
+#inner-box {
+    margin: 10px;
+}
+
+#outer-box {
+    margin: 5px 0 15px 0;
+}
+
+#scroll {
+  padding: 5px;
+}
+
+
+#text, #img {
+  margin: 10px;
+  background:unset;
+  transition: all .25s ease-in-out;
+}
+
+#entry:selected {
+  background-color: $lavender-bg;
+  border-radius: 10px;
+}
