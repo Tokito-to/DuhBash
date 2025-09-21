@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+VM=win11
+
+export LIBVIRT_DEFAULT_URI="qemu:///system"
+export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
+
+virsh net-info default | grep -q "^Active:.*yes$" || virsh net-start default
+
+# Trap to shutdown VM on Exit
+trap "virsh shutdown $VM && virsh net-destroy default" QUIT
+
+virsh start "$VM" && \
+	virt-viewer --full-screen --auto-resize never -z 25 --connect qemu:///system --attach --domain-name "$VM"

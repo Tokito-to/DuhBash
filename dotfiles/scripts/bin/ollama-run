@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if systemctl is-active ollama --quiet; then
+    systemctl stop ollama docker docker.socket
+else
+    systemctl start ollama docker
+fi
+

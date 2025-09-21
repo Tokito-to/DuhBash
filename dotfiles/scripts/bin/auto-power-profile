@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set-profile() {
+	local BATTERY_STATUS BATTERY_LEVEL
+	BATTERY_STATUS="$(cat /sys/class/power_supply/BAT1/status)"
+	BATTERY_LEVEL="$(cat /sys/class/power_supply/BAT1/capacity)"
+	case "$BATTERY_STATUS" in
+		Full)
+			powerprofilesctl set performance
+		;;
+		Charging)
+			powerprofilesctl set performance
+		;;
+		Discharging)
+			if [[ "$BATTERY_LEVEL" -ge 75 ]]; then
+				powerprofilesctl set performance
+			elif [[ "$BATTERY_LEVEL" -ge 40 ]]; then
+				powerprofilesctl set balanced
+			elif [[ "$BATTERY_LEVEL" -ls 30 ]]; then
+				powerprofilesctl set power-saver
+			fi
+		;;
+	esac
+}
+
+start-daemon() {
+	while true; do
+		set-profile
+		sleep 60
+	done
+}
+
+if ! systemctl is-active power-profiles-daemon.service --quiet; then
+	echo "power-profiles-daemon service Not Running. Exiting!"
+	exit 128
+fi
+
+case $1 in
+	--swap)
+		set-profile
+	;;
+	--daemon)
+		if [ "$(pgrep -f auto-power-profile)"  != "$$" ]; then
+			kill -9 "$(pgrep -f auto-power-profile | grep -v $$)"
+		fi
+		start-daemon
+	;;
+esac
