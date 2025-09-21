@@ -6,3 +6,6 @@ packages = "'neovim' 'git' 'python-pynvim' 'tree-sitter-cli'"
 config = "'nvim'"
 local = "''"
 
+[scripts]
+local = "'bin'"
+

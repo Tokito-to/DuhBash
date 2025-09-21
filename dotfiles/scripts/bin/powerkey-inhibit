@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+ #https://github.com/hyprwm/Hyprland/issues/2614#issuecomment-2395597405
+
+ case $1 in
+	 -i|--inhibit)
+ 		if [[ -f /tmp/.hyprland-systemd-inhibit ]]; then 
+	 		kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"
+	 		rm /tmp/.hyprland-systemd-inhibit
+ 		fi
+ 
+ 		systemd-inhibit --who="Hyprland" --why="wlogout keybind" \
+	 		--what=handle-power-key --mode=block sleep infinity & \
+	 		echo $! > /tmp/.hyprland-systemd-inhibit
+	;;
+	-d|--destroy)
+		kill -9 "$(cat  /tmp/.hyprland-systemd-inhibit)"
+		rm /tmp/.hyprland-systemd-inhibit
+	;;
+	*)
+		echo "Error: Unknown Flag!"
+esac
+

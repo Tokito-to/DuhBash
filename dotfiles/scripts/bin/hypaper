@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+WALLS_DIR="$HOME/tmp/ffmpeg/out"
+INTERVAL="600" #10-Mins
+
+start-hyprpaper() {
+    hyprpaper &
+    sleep 3
+}
+
+set-wall() {
+	pgrep hyprctl && killall hyprctl
+	pidof hyprpaper 2> /dev/null || start-hyprpaper
+	hyprctl hyprpaper preload "$1"
+	hyprctl hyprpaper wallpaper "eDP-1,$1"
+	sleep 3 && unload-walls
+}
+
+unload-walls() {
+	# once wall is set we don't need it in memory
+	for LOADED in $(hyprctl hyprpaper listloaded); do
+		hyprctl hyprpaper unload "$LOADED";
+	done
+}
+
+start-daemon() {
+	while true; do
+		local WALLPAPER
+		WALLPAPER="$(find -L "$WALLS_DIR" -type f | shuf -n 1)"
+
+		set-wall "$WALLPAPER"
+		sleep "$INTERVAL"
+	done
+}
+
+
+print-help() {
+	cat <<EOF
+Hyprpaper Randomizer Script
+===========================
+Usage: \$0 [FLAGS]...
+
+Options:
+    -h, --help        Display this help message.
+    -s, --swap [PATH] Change the wallpaper a random wall.
+    	          Change the wallpaper to the specified file. (optional)
+    -d, --daemon      Start the script in daemon mode.
+
+Environment Variables:
+    WALLS_DIR         The directory containing the wallpapers. (default: \$HOME/walls)
+    INTERVAL          The interval in seconds for sideshow (default: 600)
+
+Note: [PATH] Must be absolute path to the wallpaper."
+EOF
+}
+
+# Start Script
+pidof hyprpaper 2> /dev/null || start-hyprpaper
+
+if [ $# -eq 0 ]; then
+	echo -e "\e[91mERROR:\e[39m No Flags supplied"
+	print-help && exit 0
+fi
+
+# Flags
+case $1 in
+	-s|--swap)
+		if [[ -n $2 ]]; then
+			WALLPAPER="$2"
+			[[ -f "$WALLPAPER" ]] || { echo -e "\e[91mERROR:\e[39m 404 - File Not Found!"; exit 128; }
+		else
+			WALLPAPER="$(find -L "$WALLS_DIR" -type f | shuf -n 1)"
+		fi
+		set-wall "$WALLPAPER"
+	;;
+	-d|--daemon)
+	    # Make sure Only One Daemon is Running!
+		for Instance in $(pgrep -f "hypaper -d") $(pgrep -f "hypaper --daemon"); do
+	        if [[ "${Instance}" != "$$" ]]; then
+		    	kill -9 "${Instance}"
+		    fi
+		done
+		start-daemon
+	;;
+	-h|--help)
+		print-help && exit 0
+	;;
+	-*)
+		echo -e "\e[91mERROR:\e[39m No Such Flag Exists. \e[92m(BAKA!)\e[39m"
+		print-help && exit 0
+	;;
+esac

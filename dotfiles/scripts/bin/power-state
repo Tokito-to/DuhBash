@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+plug_in() {
+	pw-play /usr/share/sounds/freedesktop/stereo/power-plug.oga
+	notify-send --icon=/usr/share/icons/Adwaita/symbolic/legacy/battery-good-symbolic.svg \
+		'Changing Power States' 'Using AC power' --expire-time=4000
+}
+
+plug_out() {
+	pw-play /usr/share/sounds/freedesktop/stereo/power-unplug.oga
+	notify-send --icon=/usr/share/icons/Adwaita/symbolic/legacy/battery-good-symbolic.svg \
+		'Changing Power States' 'Using battery power' --expire-time=4000
+}
+
+case $1 in
+	pluged)
+		plug_in
+	;;
+	unpluged)
+		plug_out
+	;;
+esac
