@@ -113,7 +113,6 @@ copy() {
 backup() {
     local TABLE=$1
     local -n TABLE_DIRS=$2
-    local -n EXTRACT_DIR=$3
     local TOML_CHECK
     TOML_CHECK=$(check_toml_get "${!TABLE_DIRS}")
 
@@ -121,9 +120,9 @@ backup() {
         # shellcheck disable=2068
         for TABLE_DIR in ${TABLE_DIRS[@]}; do
             if [[ "${TABLE}" ==  "${TABLE_DIR}" ]]; then
-                copy "${EXTRACT_DIR}/${TABLE_DIR}" "${STORE_DIR}" "${TABLE}"
+                copy "${CONFIG_DIR}/${TABLE_DIR}" "${STORE_DIR}" "${TABLE}"
             else
-                copy "${EXTRACT_DIR}/${TABLE_DIR}" "${STORE_DIR}/${TABLE}" "${TABLE}"
+                copy "${CONFIG_DIR}/${TABLE_DIR}" "${STORE_DIR}/${TABLE}" "${TABLE}"
             fi
         done
     fi
@@ -132,7 +131,6 @@ backup() {
 restore() {
     local TABLE=$1
     local -n TABLE_DIRS=$2
-    local -n RESTORE_DIR=$3
     local TOML_CHECK
     TOML_CHECK=$(check_toml_get "${!TABLE_DIRS}")
 
@@ -140,9 +138,9 @@ restore() {
         # shellcheck disable=2068
         for TABLE_DIR in ${TABLE_DIRS[@]}; do
             if [[ "${TABLE}" ==  "${TABLE_DIR}" ]]; then
-                copy "${STORE_DIR}/${TABLE}" "${RESTORE_DIR}" "${TABLE}"
+                copy "${STORE_DIR}/${TABLE}" "${CONFIG_DIR}" "${TABLE}"
             else
-                copy "${STORE_DIR}/${TABLE}/${TABLE_DIR}" "${RESTORE_DIR}" "${TABLE}"
+                copy "${STORE_DIR}/${TABLE}/${TABLE_DIR}" "${CONFIG_DIR}" "${TABLE}"
             fi
         done
     fi
