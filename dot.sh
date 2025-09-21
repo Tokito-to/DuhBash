@@ -37,8 +37,8 @@ case $EXIT_STATUS in
             IFS=" " read -r TABLE_CONFIG_DIRS <<< "$(toml_get "${TABLE}" config)"
             IFS=" " read -r TABLE_LOCAL_DIRS <<< "$(toml_get "${TABLE}" local)"
 
-            backup "${TABLE}" "TABLE_CONFIG_DIRS"
-            backup "${TABLE}" "TABLE_LOCAL_DIRS"
+            backup "${TABLE}" "TABLE_CONFIG_DIRS" "CONFIG_DIR"
+            backup "${TABLE}" "TABLE_LOCAL_DIRS" "LOCAL_DIR"
         done
         ;;
     1)
@@ -53,8 +53,8 @@ case $EXIT_STATUS in
                     IFS=" " read -r TABLE_CONFIG_DIRS <<< "$(toml_get "${TABLE}" config)"
                     IFS=" " read -r TABLE_LOCAL_DIRS <<< "$(toml_get "${TABLE}" local)"
 
-                    restore "${TABLE}" "TABLE_CONFIG_DIRS"
-                    restore "${TABLE}" "TABLE_LOCAL_DIRS"
+                    restore "${TABLE}" "TABLE_CONFIG_DIRS" "CONFIG_DIR"
+                    restore "${TABLE}" "TABLE_LOCAL_DIRS" "LOCAL_DIR"
                 done
                 ;;
             1)
